@@ -116,7 +116,8 @@ p:before {
     background-color: #78788c;
     color: #ffffff;
     cursor: pointer;
-    transition: all .3s
+    transition: all .3s;
+    border-radius: 5px;
 }
 
 button:hover {
