@@ -1,17 +1,28 @@
-<!DOCTYPE html>
-<html>
-    <head>
-        <meta charset="utf-8">
-        <meta http-equiv="X-UA-Compatible" content="IE=edge">
-        <title></title>
-        <meta name="description" content="">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
-        <link rel="stylesheet" href="">
-    </head>
-    <body>
-        <h1>REGISTRO</h1>
-        <a href={% url 'index' %}>Inicio</a>
-        <a href={% url 'productos' %}>Consultar Productos</a>
-        <a href={% url 'resultado' %}>Resultados</a>
+{% extends 'base.html' %}
+
+{% block title %}Registro de Productos{% endblock %}
+
+{% block content %}
+    <body class="bodyR">
+        <form class="form" method="POST">
+            {% csrf_token %}
+            <h2 class="h2R">Registrar Producto</h2>
+            {% if error %}
+                <p style="color:red;">{{ error }}</p>
+            {% endif %}
+            <p type="Código:">
+                <input class="inputR" type="text" name="codigo" id="codigo" placeholder="Escribe el código del producto.."></input>
+            </p>
+            <p type="Nombre:">
+                <input class="inputR" type="text" name="nombre" id="nombre" placeholder="Escribe el nombre del producto.."></input>
+            </p>
+            <p type="Marca:">
+                <input class="inputR" type="text" name="marca" id="marca" placeholder="Escribe la marca del producto.."></input>
+            </p>
+            <p type="Feccha Vencimiento:">
+                <input class="inputR" type="date" name="fecha_vencimiento" id="fecha_vencimiento"></input>
+            </p>
+            <button class="buttonR" type="submit">Registrar</button>
+        </form>
     </body>
-</html>
+{% endblock %}

@@ -1,16 +1,17 @@
-<!DOCTYPE html>
-<html>
-    <head>
-        <meta charset="utf-8">
-        <meta http-equiv="X-UA-Compatible" content="IE=edge">
-        <title></title>
-        <meta name="description" content="">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
-        <link rel="stylesheet" href="">
-    </head>
-    <body>
-        <h1>Inicio</h1>
-        <a href={% url 'productos' %}>Consultar Productos</a>
-        <a href={% url 'registro' %}>Registrar Productos</a>
-        <a href={% url 'resultado' %}>Resultados</a>
-</html>
+{% extends "base.html" %}
+
+{% block title %}Inicio{% endblock %}
+
+{% block content %}
+    <body class="bodyR">
+        <div class="form">
+            <h1 class="h2R">Bienvenido</h1>
+            <p>
+                En Gestión de Productos S.A., nos dedicamos a proporcionar soluciones eficientes para la gestión de 
+                inventarios y productos de todo tipo. Nuestra plataforma web está diseñada para ayudar a los administradores 
+                a registrar, consultar y monitorear de manera fácil y rápida los productos que manejan en su día a día.
+            </p>
+        </div>
+
+    </body>
+{% endblock %}
