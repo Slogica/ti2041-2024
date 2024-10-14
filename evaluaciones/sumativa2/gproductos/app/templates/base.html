@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>{% block title%} {% endblock %}</title>
+        {% load static %}
+        <link rel="stylesheet" href="{% static 'css/style.css' %}">
+    </head>
+    <body>
+        <header>
+            <nav class="navbar">
+                <div>
+                    <a href={% url 'index' %} class="start">Gestión de Productos S.A</a>
+                    <a href={% url 'productos' %}>Consultar Productos</a>
+                    <a href={% url 'registro' %}>Registrar Productos</a>
+                </div>
+            </nav>
+        </header>
+        <section>
+            {% block content %}
+            
+            {% endblock %}
+        </section>
+        <footer>
+            <p>&copy; 2024 Gestión de Productos S.A.</p>
+        </footer>
+    </body>
+</html>

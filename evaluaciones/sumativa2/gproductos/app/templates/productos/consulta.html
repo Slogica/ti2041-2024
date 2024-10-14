@@ -1,0 +1,35 @@
+{% extends 'base.html' %}
+
+{% block title %}Consulta de Productos{% endblock %}
+
+{% block content %}
+    <body class="bodyR">
+        <div class="form">
+            <h1 class="h2R">Productos Registrados</h1>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Código</th>
+                        <th>Nombre</th>
+                        <th>Marca</th>
+                        <th>Fecha de Vencimiento</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for producto in productos %}
+                        <tr>
+                            <td>{{ producto.codigo }}</td>
+                            <td>{{ producto.nombre }}</td>
+                            <td>{{ producto.marca }}</td>
+                            <td>{{ producto.fecha_vencimiento }}</td>
+                        </tr>
+                        {% empty %}
+                        <tr>
+                            <td colspan="4">No hay productos registrados</td>
+                        </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </body>
+{% endblock %}

@@ -1,0 +1,17 @@
+{% extends 'base.html' %}
+
+{% block title %}RESULTADO{% endblock %}
+
+{% block content %}
+    <body class="bodyR">
+        <div class="form">
+            <h1 class="h2R">Producto registrado con éxito</h1>
+            <p>Código: {{ productos.codigo }}</p>
+            <p>Nombre: {{ productos.nombre }}</p>
+            <p>Marca: {{ productos.marca }}</p>
+            <p>Fecha de Vencimiento: {{ productos.fecha_vencimiento }}</p>
+            <a class="buttonR"href="{% url 'productos' %}">Ver todos los productos</a>
+        </div>
+        
+    </body>
+{% endblock %}
