@@ -6,22 +6,64 @@
     <body class="bodyR">
         <div class="form">
             <h1 class="h2R">Productos Registrados</h1>
+
+            <!-- Formulario para filtrar -->
+            <form method="GET" class="filtros">
+                <label for="tamaño">Tamaño:</label>
+                <select name="tamaño" id="tamaño">
+                    <option value="">Todos</option>
+                    <option value="P" {% if filtros.tamaño == 'P' %}selected{% endif %}>Pequeño</option>
+                    <option value="M" {% if filtros.tamaño == 'M' %}selected{% endif %}>Mediano</option>
+                    <option value="G" {% if filtros.tamaño == 'G' %}selected{% endif %}>Grande</option>
+                </select>
+
+                <label for="categoria">Categoría:</label>
+                <select name="categoria" id="categoria">
+                    <option value="">Todas</option>
+                    {% for categoria in categorias %}
+                        <option value="{{ categoria.id }}" {% if filtros.categoria_id == categoria.id|stringformat:"s" %}selected{% endif %}>{{ categoria.nombre }}</option>
+                            {{ categoria.nombre }}
+                        </option>
+                    {% endfor %}
+                </select>
+
+                <label for="marca">Marca:</label>
+                <select name="marca" id="marca">
+                    <option value="">Todas</option>
+                    {% for marca in marcas %}
+                        <option value="{{ marca.id }}" {% if filtros.marca_id == marca.id|stringformat:"s" %}selected{% endif %}>
+                            {{ marca.nombre }}
+                        </option>
+                    {% endfor %}
+                </select>
+
+                <button type="submit" class="buttonR">Filtrar</button>
+                <a href="{% url 'productos' %}" class="buttonR">Limpiar Filtros</a>
+
             <table>
                 <thead>
                     <tr>
-                        <th>Código</th>
                         <th>Nombre</th>
+                        <th>Tamaño</th>
+                        <th>Peso</th>
+                        <th>Categoría</th>
                         <th>Marca</th>
-                        <th>Fecha de Vencimiento</th>
+                        <th>Precio</th>
+                        <th style="width: 200px;">Acciones</th>
                     </tr>
                 </thead>
                 <tbody>
                     {% for producto in productos %}
                         <tr>
-                            <td>{{ producto.codigo }}</td>
                             <td>{{ producto.nombre }}</td>
+                            <td>{{ producto.tamaño }}</td>
+                            <td>{{ producto.peso }}</td>
+                            <td>{{ producto.categoria }}</td>
                             <td>{{ producto.marca }}</td>
-                            <td>{{ producto.fecha_vencimiento }}</td>
+                            <td>{{ producto.precio }}</td>
+                            <td>
+                                <a class="buttonR" href="{% url 'editar_producto' producto.codigo %}">Editar</a>
+                                <a class="buttonR" href="{% url 'eliminar_producto' producto.codigo %}">Eliminar</a>
                         </tr>
                         {% empty %}
                         <tr>

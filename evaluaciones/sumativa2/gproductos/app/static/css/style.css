@@ -46,7 +46,7 @@ th {
   
 td {
     color: rgba(100, 100, 100, 60);
-    height: 30px;
+    height: 50px;
     border-bottom: 1px solid rgb(120, 120, 120);
 }
 
@@ -108,9 +108,9 @@ p:before {
 }
 
 .buttonR {
-    float: right;
+    height: 37px;
     padding: 8px 12px;
-    margin: 8px 0 0;
+    margin: 8px 0 0 0px;
     font-family: 'Montserrat', sans-serif;
     border: 2px solid #5d5d6e;
     background-color: #78788c;
@@ -129,9 +129,3 @@ img {
     width: 100%;
     height: 100%;
 }
-
-
-
-
-
-
