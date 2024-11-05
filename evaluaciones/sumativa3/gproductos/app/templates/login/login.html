@@ -1,0 +1,22 @@
+{% extends 'base.html' %}
+
+{% block title %}Registro de Productos{% endblock %}
+
+{% block content %}
+    <body class="bodyR">
+        <form class="form" action="." method="POST">
+            {% csrf_token %}
+            <div>
+                <label for="usuario">Usuario:</label>
+                <input class="inputR" type="text" name="usuario" id="usuario" required /><br />
+            </div>
+            <div>
+                <label for="clave">Contraseña:</label>
+                <input class="inputR" type="password" name="clave" id="clave" required /><br />
+            </div>
+            <div>
+                <button class="buttonR" type="submit">Ingresar</button>
+            </div>
+        </form>
+    </body>
+{% endblock %}
