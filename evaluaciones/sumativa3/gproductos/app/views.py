@@ -2,10 +2,13 @@ from django.shortcuts import render, redirect, get_object_or_404, HttpResponse
 from datetime import datetime
 from .models import Productos, Categoria, Marca
 from django.contrib.auth import authenticate, login, logout
-from django.contrib.auth.decorators import permission_required, login_required
+from django.contrib.auth.decorators import user_passes_test, login_required
 from .forms import ProductosForm
 
 # Create your views here.
+
+def es_admin(user):
+    return user.groups.filter(name='admin').exists()
 
 def log_in(request):
     if request.user.is_authenticated:
@@ -31,6 +34,7 @@ def log_out(request):
     return redirect('login')
 
 @login_required
+@user_passes_test(es_admin, login_url='/login')
 def registro(request):
     if request.method == 'POST':
         form = ProductosForm(request.POST)
@@ -48,6 +52,7 @@ def registro(request):
     return render(request, 'productos/registro.html', {'form': form})
 
 @login_required
+@user_passes_test(es_admin, login_url='/login')
 def editar_producto(request, codigo):
     producto = get_object_or_404(Productos, codigo=codigo)
 
@@ -65,6 +70,7 @@ def editar_producto(request, codigo):
     return render(request, 'productos/editar_producto.html', {'form': form, 'producto': producto})
 
 @login_required
+@user_passes_test(es_admin, login_url='/login')
 def eliminar_producto(request, codigo):
     producto = get_object_or_404(Productos, codigo=codigo)
 
@@ -74,6 +80,7 @@ def eliminar_producto(request, codigo):
     
     return render(request, 'productos/eliminar.html', {'producto': producto})
 
+@login_required
 def resultado(request):
     ultimo_producto = Productos.objects.latest('codigo')
 
@@ -111,6 +118,7 @@ def productos(request):
             'tamaño': tamaño,
             'categoria': categoria_id,
             'marca': marca_id,
-        }
+        },
+        'es_admin': es_admin(request.user)
     }
     return render(request, 'productos/consulta.html', context)

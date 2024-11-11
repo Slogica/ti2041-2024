@@ -1,5 +1,14 @@
 # ti2041-2024
 <br>
+Users:
+</br>
+<br>
+user: admin, password: inacap2024
+</br>
+<br>
+user: user, password: inacap2024
+</br>
+<br>
 Pasos:
 </br>
 <br>

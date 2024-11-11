@@ -11,7 +11,9 @@
                 {% if user.is_authenticated %}
                     <div>
                         <a href={% url 'productos' %}>Gestión de Productos</a>
-                        <a href={% url 'registro' %}>Registrar Productos</a>
+                        {% if es_admin %}
+                            <a href={% url 'registro' %}>Registrar Productos</a>
+                        {% endif %}
                         <a href={% url 'logout' %}>Cerrar Sesión</a>
                     </div>
                 {% else %}

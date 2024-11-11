@@ -49,7 +49,9 @@
                         <th>Categoría</th>
                         <th>Marca</th>
                         <th>Precio</th>
-                        <th style="width: 200px;">Acciones</th>
+                        {% if es_admin %}
+                            <th style="width: 200px;">Acciones</th>
+                        {% endif %} 
                     </tr>
                 </thead>
                 <tbody>
@@ -61,9 +63,12 @@
                             <td>{{ producto.categoria }}</td>
                             <td>{{ producto.marca }}</td>
                             <td>{{ producto.precio }}</td>
-                            <td>
-                                <a class="buttonE" href="{% url 'editar_producto' producto.codigo %}">Editar</a>
-                                <a class="buttonD" href="{% url 'eliminar_producto' producto.codigo %}">Eliminar</a>
+                            {% if es_admin %}
+                                <td>
+                                    <a class="buttonE" href="{% url 'editar_producto' producto.codigo %}">Editar</a>
+                                    <a class="buttonD" href="{% url 'eliminar_producto' producto.codigo %}">Eliminar</a>
+                                </td>
+                            {% endif %}
                         </tr>
                         {% empty %}
                         <tr>
