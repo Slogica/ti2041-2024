@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>{% block title%} {% endblock %}</title>
+        {% load static %}
+        <link rel="stylesheet" href="{% static 'css/styles.css' %}">
+    </head>
+    <body>
+        <header>
+            <nav class="navbar">
+                {% if user.is_authenticated %}
+                    <div>
+                        <a href={% url 'productos' %}>Gestión de Productos</a>
+                        {% if es_admin %}
+                            <a href={% url 'registro' %}>Registrar Productos</a>
+                        {% endif %}
+                        <a href={% url 'logout' %}>Cerrar Sesión</a>
+                    </div>
+                {% else %}
+                    <div>
+                        <a href={% url 'login' %}>Ingresar</a>
+                    </div>
+                {% endif %}
+            </nav>
+        </header>
+        <section>
+            {% block content %}
+            
+            {% endblock %}
+        </section>
+        <footer>
+            <p>&copy; 2024 Gestión de Productos S.A.</p>
+        </footer>
+    </body>
+</html>

@@ -1,0 +1,26 @@
+{% extends 'base.html' %}
+
+{% block title %}Eliminar Producto{% endblock %}
+
+{% block content %}
+    <body class="bodyR">
+        <div class="form">
+            <h2 class="h2R">¿Estás seguro de que deseas eliminar este producto?</h2>
+            
+            <p><strong>Nombre:</strong> {{ producto.nombre }}</p>
+            <p><strong>Tamaño:</strong> {{ producto.get_tamaño_display }}</p>
+            <p><strong>Peso:</strong> {{ producto.peso }}</p>
+            <p><strong>Categoría:</strong> {{ producto.categoria }}</p>
+            <p><strong>Marca:</strong> {{ producto.marca }}</p>
+            <p><strong>Precio:</strong> {{ producto.precio }}</p>
+        
+            <form method="POST" style="margin-top: 20px;">
+                {% csrf_token %}
+                <div style="text-align: right;">
+                    <button type="submit" class="buttonD">Confirmar eliminación</button>
+                    <a href="{% url 'productos' %}" class="buttonR">Cancelar</a>
+                </div>
+            </form>
+        </div>
+    </body>
+{% endblock %}

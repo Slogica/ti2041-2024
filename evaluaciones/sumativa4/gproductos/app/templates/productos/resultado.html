@@ -1,0 +1,20 @@
+{% extends 'base.html' %}
+
+{% block title %}RESULTADO{% endblock %}
+
+{% block content %}
+    <body class="bodyR">
+        <div class="form">
+            <h1 class="h2R">Producto registrado con éxito</h1>
+            <p>Nombre: {{ productos.nombre }}</p>
+            <p>Tamaño: {{ productos.get_tamaño_display }}</p>
+            <p>Peso: {{ productos.peso }}</p>
+            <p>Categoría: {{ productos.categoria }}</p>
+            <p>Marca: {{ productos.marca }}</p>
+            <p>Precio: {{ productos.precio }}</p>
+            <a class="buttonR"href="{% url 'productos' %}">Ver todos los productos</a>
+            <a class="buttonR"href="{% url 'registro' %}">Registrar Otro</a>
+        </div>
+        
+    </body>
+{% endblock %}

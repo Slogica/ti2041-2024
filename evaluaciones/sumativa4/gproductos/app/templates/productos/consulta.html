@@ -1,0 +1,82 @@
+{% extends 'base.html' %}
+
+{% block title %}Consulta de Productos{% endblock %}
+
+{% block content %}
+    <body class="bodyR">
+        <div class="form">
+            <h1 class="h2R">Productos Registrados</h1>
+
+            <!-- Formulario para filtrar -->
+            <form method="GET" class="filtros">
+                <label for="tamaño">Tamaño:</label>
+                <select name="tamaño" id="tamaño">
+                    <option value="">Todos</option>
+                    <option value="P" {% if filtros.tamaño == 'P' %}selected{% endif %}>Pequeño</option>
+                    <option value="M" {% if filtros.tamaño == 'M' %}selected{% endif %}>Mediano</option>
+                    <option value="G" {% if filtros.tamaño == 'G' %}selected{% endif %}>Grande</option>
+                </select>
+
+                <label for="categoria">Categoría:</label>
+                <select name="categoria" id="categoria">
+                    <option value="">Todas</option>
+                    {% for categoria in categorias %}
+                        <option value="{{ categoria.id }}" {% if filtros.categoria_id == categoria.id|stringformat:"s" %}selected{% endif %}>{{ categoria.nombre }}</option>
+                            {{ categoria.nombre }}
+                        </option>
+                    {% endfor %}
+                </select>
+
+                <label for="marca">Marca:</label>
+                <select name="marca" id="marca">
+                    <option value="">Todas</option>
+                    {% for marca in marcas %}
+                        <option value="{{ marca.id }}" {% if filtros.marca_id == marca.id|stringformat:"s" %}selected{% endif %}>
+                            {{ marca.nombre }}
+                        </option>
+                    {% endfor %}
+                </select>
+
+                <button type="submit" class="buttonR">Filtrar</button>
+                <a href="{% url 'productos' %}" class="buttonR">Limpiar Filtros</a>
+
+            <table>
+                <thead>
+                    <tr>
+                        <th>Nombre</th>
+                        <th>Tamaño</th>
+                        <th>Peso</th>
+                        <th>Categoría</th>
+                        <th>Marca</th>
+                        <th>Precio</th>
+                        {% if es_admin %}
+                            <th style="width: 200px;">Acciones</th>
+                        {% endif %} 
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for producto in productos %}
+                        <tr>
+                            <td>{{ producto.nombre }}</td>
+                            <td>{{ producto.tamaño }}</td>
+                            <td>{{ producto.peso }}</td>
+                            <td>{{ producto.categoria }}</td>
+                            <td>{{ producto.marca }}</td>
+                            <td>{{ producto.precio }}</td>
+                            {% if es_admin %}
+                                <td>
+                                    <a class="buttonE" href="{% url 'editar_producto' producto.codigo %}">Editar</a>
+                                    <a class="buttonD" href="{% url 'eliminar_producto' producto.codigo %}">Eliminar</a>
+                                </td>
+                            {% endif %}
+                        </tr>
+                        {% empty %}
+                        <tr>
+                            <td colspan="4">No hay productos registrados</td>
+                        </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </body>
+{% endblock %}

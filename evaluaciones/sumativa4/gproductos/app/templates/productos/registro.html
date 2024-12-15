@@ -1,0 +1,23 @@
+{% extends 'base.html' %}
+
+{% block title %}Registro de Productos{% endblock %}
+
+{% block content %}
+    <body class="bodyR">
+        <form class="form" method="POST">
+            {% csrf_token %}
+            <h2 class="h2R">Registrar Producto</h2>
+            {% if form.non_field_error %}
+                <p style="color:red;">{{ form.non_field_error }}</p>
+            {% endif %}
+            
+            {% if form %}
+                {{ form.as_p }}  <!-- Renderiza los campos -->
+            {% else %}
+                <p>No se está pasando ningún formulario.</p>
+            {% endif %}
+                    
+            <button class="buttonR" type="submit">Registrar</button>
+        </form>
+    </body>
+{% endblock %}
